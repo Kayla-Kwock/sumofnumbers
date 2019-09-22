@@ -6,24 +6,27 @@ function sumFor(nums){
 }
 
 function sumWhile(nums){
-  let total, i = 0;
-  while(i < nums.length)
+  let total = 0;
+  let i =0;
+  while(i < nums.length) {
     total += nums[i];
+    i++;
+  }
   return total;
 }
 
-function sumRecursion(nums, total = 1){
+function sumRecursion(nums, total = 0){
   if(nums.length == 0)
-    return total
-  let x = nums.pop();
-  return sumRecursion(nums, total + x);
+    return total;
+  return sumRecursion(nums.slice(1), total + nums[0]);
 }
 
 function sumTheSimpleWay(nums){
-  return _.reduce(nums, (total, x) => total += x, 0);
+  return _.reduce(nums, function(total, x) {return total + x});
 }
 
-let test = [1,2,3,4,5];
+const test = [1,2,3,4,5];
+console.log(test);
 console.log(sumFor(test));
 console.log(sumWhile(test));
 console.log(sumRecursion(test));
